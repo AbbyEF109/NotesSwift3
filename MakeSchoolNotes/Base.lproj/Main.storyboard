@@ -54,16 +54,23 @@
                             <outlet property="delegate" destination="u2p-Xo-LIX" id="msW-Ug-yhm"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="mTb-KT-21w"/>
+                    <navigationItem key="navigationItem" title="Notes" id="mTb-KT-21w">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bEZ-gk-Js7">
+                            <connections>
+                                <segue destination="Vc8-DG-PsL" kind="show" identifier="addNote" id="PKu-EM-tgz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dXi-TP-ue3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1501.5999999999999" y="266.71664167916043"/>
         </scene>
-        <!--Display Note View Controller-->
+        <!--Display Note-->
         <scene sceneID="56N-X8-t8J">
             <objects>
-                <viewController id="Vc8-DG-PsL" customClass="DisplayNoteViewController" customModule="MakeSchoolNotes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Display Note" id="Vc8-DG-PsL" customClass="DisplayNoteViewController" customModule="MakeSchoolNotes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Low-I7-lz1"/>
                         <viewControllerLayoutGuide type="bottom" id="Vz3-c9-UHj"/>
@@ -73,7 +80,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jdN-rO-EtM">
-                                <rect key="frame" x="8" y="135" width="351" height="524"/>
+                                <rect key="frame" x="8" y="135" width="351" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -97,8 +104,23 @@
                             <constraint firstItem="jdN-rO-EtM" firstAttribute="top" secondItem="VGq-qY-5cT" secondAttribute="bottom" constant="26" id="vC9-NB-CGn"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="Whr-2L-sCf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="IKl-B6-Bi3">
+                            <connections>
+                                <segue destination="6E6-LI-uPc" kind="unwind" identifier="Cancel" unwindAction="unwindToListNotesViewController:" id="tgS-xU-Esm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="XhL-g7-zXP">
+                            <connections>
+                                <segue destination="6E6-LI-uPc" kind="unwind" identifier="Save" unwindAction="unwindToListNotesViewController:" id="Zx5-RV-FSm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLF-b5-ke4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6E6-LI-uPc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2247" y="267"/>
         </scene>
@@ -121,4 +143,7 @@
             <point key="canvasLocation" x="562.39999999999998" y="266.71664167916043"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="PKu-EM-tgz"/>
+    </inferredMetricsTieBreakers>
 </document>
