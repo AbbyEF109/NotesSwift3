@@ -118,6 +118,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="noteContentTextView" destination="jdN-rO-EtM" id="7Ui-gb-LW1"/>
+                        <outlet property="noteTitleTextField" destination="VGq-qY-5cT" id="VY7-EA-a9v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLF-b5-ke4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6E6-LI-uPc" userLabel="Exit" sceneMemberID="exit"/>

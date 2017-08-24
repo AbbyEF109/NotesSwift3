@@ -20,7 +20,30 @@ class DisplayNoteViewController: UIViewController {
             }
             else if identifier == "Save" {
                 print("Save button tapped")
-            }
+                
+                let note = Note()
+                note.title = noteTitleTextField.text ?? ""
+                note.content = noteContentTextView.text
+                note.modificationTime = Date()
+                
+                let listNotesTableViewController = segue.destination as! ListNotesTableViewController
+                
+                listNotesTableViewController.notes.append(note)
+                
+                }
             }
         }
+    
+    @IBOutlet var noteContentTextView: UITextView!
+    
+    @IBOutlet var noteTitleTextField: UITextField!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        noteTitleTextField.text = ""
+        noteContentTextView.text = ""
+        
+        }
+    
     }
