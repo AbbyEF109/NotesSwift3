@@ -13,23 +13,24 @@ class DisplayNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    var note: Note?
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            if identifier == "Cancel" {
-                print("Cancel button tapped")
-            }
-            else if identifier == "Save" {
-                print("Save button tapped")
-                
-                let note = Note()
+        let listNotesTableViewController = segue.destination as! ListNotesTableViewController
+        if segue.identifier == "Save" {
+            if let note = note {
                 note.title = noteTitleTextField.text ?? ""
-                note.content = noteContentTextView.text
-                note.modificationTime = Date()
+                note.content = noteContentTextView.text ?? ""
+                listNotesTableViewController.tableView.reloadData()
+            }
                 
-                let listNotesTableViewController = segue.destination as! ListNotesTableViewController
-                
-                listNotesTableViewController.notes.append(note)
-                
+            else {
+                let newNote = Note()
+                newNote.title = noteTitleTextField.text ?? ""
+                newNote.content = noteContentTextView.text ?? ""
+                newNote.modificationTime = Date()
+                listNotesTableViewController.notes.append(newNote)
                 }
             }
         }
@@ -40,6 +41,13 @@ class DisplayNoteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let note = note {
+            noteTitleTextField.text = note.title
+            noteContentTextView.text = note.content
+        }
+        
+        else {
 
         noteTitleTextField.text = ""
         noteContentTextView.text = ""
@@ -47,3 +55,4 @@ class DisplayNoteViewController: UIViewController {
         }
     
     }
+}
