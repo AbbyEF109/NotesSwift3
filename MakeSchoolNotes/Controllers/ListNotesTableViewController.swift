@@ -63,6 +63,12 @@ class ListNotesTableViewController: UITableViewController {
                 }
             }
         }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            notes.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+    }
     
     @IBAction func unwindToListNotesViewController(_ segue: UIStoryboardSegue) {
         //for now, simply defining hte method is sufficient.
