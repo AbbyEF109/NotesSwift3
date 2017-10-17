@@ -18,6 +18,7 @@ class ListNotesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notes = CoreDataHelper.retrieveNotes()
     }
     // 1
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,39 +41,26 @@ class ListNotesTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //1
-        if let identifier = segue.identifier {
-            //2
-            if identifier == "displayNote" {
-                //3
-                print("Table view cell tapped")
-                
-                
-                // 1
-                let indexPath = tableView.indexPathForSelectedRow!
-                // 2
-                let note = notes[indexPath.row]
-                // 3
-                let displayNoteViewController = segue.destination as! DisplayNoteViewController
-                // 4
-                displayNoteViewController.note = note
-            }
-
-            else if identifier == "addNote" {
-                    print("+ button tapped")
-                }
-            }
+        if segue.identifier == "Save" {
+            // if note exists, update title and content
+            let note = self.note ?? Note()
+            note.title = noteTitleTextField.text ?? ""
+            note.content = noteContentTextView.text ?? ""
+            note.modificationTime = Date()
+            CoreDataHelper.saveNote()
         }
+    }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            notes.remove(at: indexPath.row)
-            tableView.reloadData()
+            //1
+            CoreDataHelper.delete(note: notes[indexPath.row])
+            //2
+            notes = CoreDataHelper.retrieveNotes()
         }
     }
     
     @IBAction func unwindToListNotesViewController(_ segue: UIStoryboardSegue) {
-        //for now, simply defining hte method is sufficient.
-        //we'll add code later
+        self.notes = CoreDataHelper.retrieveNotes()
     }
 
 }
