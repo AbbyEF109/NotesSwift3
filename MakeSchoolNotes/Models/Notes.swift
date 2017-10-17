@@ -7,8 +7,8 @@
 //
 import CoreData
 import UIKit
-
-class Note: NSManagedObject {
+@objc(Note)
+public class Note: NSManagedObject {
     @NSManaged public var title: String?
     @NSManaged public var content: String?
     @NSManaged public var modificationTime: Date?

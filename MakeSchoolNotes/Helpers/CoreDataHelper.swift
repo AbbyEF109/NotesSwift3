@@ -23,7 +23,7 @@ class CoreDataHelper {
         }
     }
     
-    static func delete(note: Note) {
+    static func delete(_ note: Note) {
         managedContext.delete(note)
         saveNote()
     }
